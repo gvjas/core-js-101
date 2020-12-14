@@ -116,46 +116,31 @@ function fromJSON(proto, json) {
  */
 
 const cssSelectorBuilder = {
-  builder: '',
-  element(value) {
-    // eslint-disable-next-line no-return-assign
-    this.builder = value;
-    return this;
+  element(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  id(value) {
-    // eslint-disable-next-line no-return-assign
-    this.builder = `#${value}`;
-    return this;
+  id(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  class(value) {
-    // eslint-disable-next-line no-return-assign
-    this.builder = `.${value}`;
-    return this;
+  class(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  attr(value) {
-    this.builder = `[${value}]`;
-    return this;
+  attr(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  pseudoClass(value) {
-    this.builder = `:${value}`;
-    return this;
+  pseudoClass(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  pseudoElement(value) {
-    this.builder = `::${value}`;
-    return this;
+  pseudoElement(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  combine(selector1, combinator, selector2) {
-    this.builder = `${selector1} ${combinator} ${selector2}`;
-    return this;
-  },
-  stringify() {
-    // return this.builder;
+  combine(/* selector1, combinator, selector2 */) {
     throw new Error('Not implemented');
   },
 };

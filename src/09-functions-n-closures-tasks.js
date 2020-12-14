@@ -23,8 +23,11 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  // eslint-disable-next-line func-names
+  return function (x) {
+    return f(g(x));
+  };
 }
 
 
@@ -44,8 +47,11 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  // eslint-disable-next-line func-names
+  return function (x) {
+    return x ** exponent;
+  };
 }
 
 
@@ -62,8 +68,20 @@ function getPowerFunction(/* exponent */) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(a = 0, b = 0, c = 0) {
+  if (a === 0 && b === 0 && c === 0) {
+    return null;
+  }
+  // eslint-disable-next-line func-names
+  return function (x) {
+    if (a !== 0 && b !== 0 && c === 0) {
+      return a * x + b;
+    }
+    if (a !== 0 && b === 0 && c === 0) {
+      return a;
+    }
+    return a * x * x + b * x + c;
+  };
 }
 
 
@@ -81,8 +99,17 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  const cache = {};
+  return (...args) => {
+    const n = args[0];
+    if (n in cache) {
+      return cache[n];
+    }
+    const result = func(n);
+    cache[n] = result;
+    return result;
+  };
 }
 
 
@@ -101,8 +128,18 @@ function memoize(/* func */) {
  * }, 2);
  * retryer() => 2
  */
-function retry(/* func, attempts */) {
-  throw new Error('Not implemented');
+function retry(func, attempts) {
+  // eslint-disable-next-line func-names
+  return function () {
+    for (let i = 0; i < attempts; i += 1) {
+      try {
+        func();
+      } catch (e) {
+        // throw new Error();
+      }
+    }
+    return func();
+  };
 }
 
 
